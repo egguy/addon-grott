@@ -16,6 +16,6 @@ jobs:
   workflows:
     uses: hassio-addons/workflows/.github/workflows/addon-deploy.yaml@main
     with:
-      slug: "grott"
-      secrets:
-        DISPATCH_TOKEN: ${{ secrets.DISPATCH_TOKEN }}
+      slug: "zwave-js-ui"
+    secrets:
+      CAS_API_KEY: ${{ secrets.CAS_API_KEY }}
