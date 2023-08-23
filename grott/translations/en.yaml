@@ -1,0 +1,38 @@
+---
+configuration:
+  verbose:
+    name: Verbose mode
+    description: Enable the verbose mode. Useful for debugging
+  retain:
+    name: Activate MQTT retain
+    description: >-
+      This allow to keep the values between reboot, prevent showing sensor
+      values as unknown
+  gminrecl:
+    name: Minimum record length
+    description: The minimum packet length to be treated
+  grott_mqtt:
+    name: Enable grott MQTT
+    description: >-
+      Allow grott to send MQTT messages. If your are using
+      the grott_ha extension, you don't need this.
+      If you are using the grott integration, you need to enable it.
+  ginvtype:
+    name: Inverter type
+    description: >-
+      For changing the layout used for decoding
+      (ex: sph, spf or tl3). Keep it on default if using inverter map.
+  ginvtypemap:
+    name: Inverter mapping
+    description: >-
+      An inverter mapping in the form {"SERIAL": "type"}
+      e.g.: for an SPH6000 with serial "NWO00415E3" : {"NWO00415E3": "sph"}
+  ha_plugin:
+    name: Home Assistant plugin
+    description: >-
+      Enable the Home Assistant plugin.
+      This will send the data to Home Assistant via the grott HA plugin.
+      Can be disabled if you are using the grott integration.
+
+network:
+  5279/TCP: This is the port used by grott to receive datalogger information.

@@ -1,0 +1,87 @@
+# stolen from zigbee2mqtt
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      type:
+        description: 'Type (edge)'
+        default: 'edge'
+        required: true
+
+jobs:
+  variables:
+    runs-on: ubuntu-latest
+    outputs:
+      ARCH_LIST: ${{ env.ARCH_LIST }}
+      ADDON_LIST: ${{ env.ADDON_LIST }}
+      DOCKER_ARGS: ${{ env.DOCKER_ARGS }}
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: "ARGS: default"
+      run: |
+        echo "ADDON_LIST=['grott', 'grott-current']" >> $GITHUB_ENV
+        echo "DOCKER_ARGS=--no-latest --test" >> $GITHUB_ENV
+    - name: "ARGS: grott-edge" # Build of addon edge version
+      if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.type == 'edge'))
+      run: |
+        echo "ADDON_LIST=['grott-current']" >> $GITHUB_ENV
+        echo "DOCKER_ARGS=--no-cache -v edge-${{ github.run_id }}" >> $GITHUB_ENV
+    - name: "ARGS: grott" # Build of addon release version
+      if: startsWith(github.ref, 'refs/tags/') && github.event_name == 'push'
+      run: |
+        echo "ADDON_LIST=['grott']" >> $GITHUB_ENV
+        echo "DOCKER_ARGS=--no-cache --docker-hub-check" >> $GITHUB_ENV
+    - name: Determine arch
+      id: determine_arch
+      run: |
+        ARCH_LIST=$(jq -r -c '.arch' ./${{ fromJSON(env.ADDON_LIST)[0] }}/config.json)
+        echo "Found the following arches: $ARCH_LIST"
+        echo "ARCH_LIST=$ARCH_LIST" >> $GITHUB_ENV
+  build:
+    runs-on: ubuntu-latest
+    needs: variables
+    env:
+      DOCKER_ARGS: ${{needs.variables.outputs.DOCKER_ARGS}}
+    strategy:
+      matrix:
+        arch: ${{fromJSON(needs.variables.outputs.ARCH_LIST)}}
+        addon: ${{fromJSON(needs.variables.outputs.ADDON_LIST)}}
+    steps:
+    - uses: actions/checkout@v3
+    - name: Login to docker
+      uses: docker/login-action@v2
+      if: (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/')) && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Build
+      run: |
+        #cp ${{ matrix.addon }}/build.yaml ${{ matrix.addon }}
+        docker run --rm --privileged \
+            -v /home/runner/.docker:/root/.docker \
+            -v /run/docker.sock:/run/docker.sock:rw \
+            -v $(pwd)/${{ matrix.addon }}:/data homeassistant/amd64-builder --${{ matrix.arch }} -t /data \
+            ${{ env.DOCKER_ARGS }}
+  update-rel:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Update package.json version
+      uses: jossef/action-set-json-field@v2.1
+      with:
+        file: grott-current/config.json
+        field: version
+        value: "edge-${{ github.run_id }}"
+    - name: Commit files
+      uses: EndBug/add-and-commit@v9
+      with:
+        default_author: github_actions
+        message: 'edge: bumping release edge-${{ github.run_id }}'
