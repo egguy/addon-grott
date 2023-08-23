@@ -17,6 +17,6 @@ jobs:
     uses: hassio-addons/workflows/.github/workflows/addon-deploy.yaml@main
     with:
       slug: "grott"
-    # secrets:
-    #   CAS_API_KEY: ${{ secrets.CAS_API_KEY }}
-    #   DISPATCH_TOKEN: ${{ secrets.DISPATCH_TOKEN }}
+      # secrets:
+      #   CAS_API_KEY: ${{ secrets.CAS_API_KEY }}
+      #   DISPATCH_TOKEN: ${{ secrets.DISPATCH_TOKEN }}
