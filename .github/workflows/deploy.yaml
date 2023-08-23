@@ -72,6 +72,9 @@ jobs:
     name: 👷 Build & Deploy ${{ matrix.architecture }}
     needs: information
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     strategy:
       matrix:
         architecture: ${{ fromJson(needs.information.outputs.architectures) }}
