@@ -5,7 +5,6 @@
   "description": "The Growatt inverter monitor with current HA plugin integrated",
   "url": "https://github.com/egguy/grott-home-assistant-add-on/tree/main/grott-current",
   "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
-  "codenotary": "etienne.guilluy@gmail.com",
   "services": ["mqtt:need"],
   "init": false,
   "map": ["config:rw"],

@@ -7,4 +7,3 @@ build_from:
   i386: ghcr.io/hassio-addons/base/i386:14.1.0
 codenotary:
   base_image: codenotary@frenck.dev
-  signer: etienne.guilluy@gmail.com
