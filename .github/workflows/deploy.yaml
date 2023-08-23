@@ -1,37 +1,18 @@
 ---
 name: Deploy
 
-concurrency:
-  group: queue
-
 # yamllint disable-line rule:truthy
 on:
-  workflow_call:
-    inputs:
-      slug:
-        description: Overrides the detected slug
-        required: false
-        type: string
-      repository:
-        default: "repository"
-        description: The name of the stable repository
-        required: false
-        type: string
-      repository_edge:
-        default: "repository-edge"
-        description: The name of the edge repository
-        required: false
-        type: string
-      repository_beta:
-        default: "repository-beta"
-        description: The name of the beta repository
-        required: false
-        type: string
-    secrets:
-      CAS_API_KEY:
-        required: false
-      DISPATCH_TOKEN:
-        required: true
+  release:
+    types:
+      - published
+  workflow_run:
+    workflows: ["CI"]
+    branches: [main]
+    types:
+      - completed
+concurrency:
+  group: deploy
 
 jobs:
   information:
