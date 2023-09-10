@@ -12,7 +12,10 @@ ENV LANG C.UTF-8
 
 # Install python/pip
 ENV PYTHONUNBUFFERED=1
-RUN apk add --update --no-cache python3=3.11.4-r0 && ln -sf python3 /usr/bin/python && python3 -m ensurepip
+RUN apk add --update --no-cache \
+        python3=3.11.4-r0 \
+        && ln -sf python3 /usr/bin/python \
+        && python3 -m ensurepip
 
 
 #RUN curl -k https://codeload.github.com/johanmeijer/grott/zip/master --output files.zip && unzip files.zip
