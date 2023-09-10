@@ -13,7 +13,7 @@ ENV LANG C.UTF-8
 # Install python/pip
 ENV PYTHONUNBUFFERED=1
 RUN apk add --update --no-cache \
-        python3=3.11.4-r0 \
+        python3=3.11.5-r0 \
         && ln -sf python3 /usr/bin/python \
         && python3 -m ensurepip
 
