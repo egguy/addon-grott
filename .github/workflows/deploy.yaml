@@ -22,5 +22,5 @@ jobs:
     secrets:
       DISPATCH_TOKEN: ${{ secrets.DISPATCH_TOKEN }}
     permissions:
-      contents: read
+      contents: write
       packages: write
