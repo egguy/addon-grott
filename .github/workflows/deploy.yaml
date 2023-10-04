@@ -19,8 +19,8 @@ jobs:
     uses: hassio-addons/workflows/.github/workflows/addon-deploy.yaml@main
     with:
       slug: "grott"
-      repository: "grott-home-assistant-add-on"
-      repository_edge: "grott-home-assistant-add-on"
+      repository: "ha-addons"
+      repository_edge: "ha-addons-edge"
     secrets:
       DISPATCH_TOKEN: ${{ secrets.DISPATCH_TOKEN }}
     permissions:
