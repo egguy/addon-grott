@@ -16,11 +16,14 @@ concurrency:
 
 jobs:
   workflows:
+    strategy:
+      matrix:
+        target: [ha-addons-edge, grott-home-assisstant-add-on]
     uses: hassio-addons/workflows/.github/workflows/addon-deploy.yaml@main
     with:
       slug: "grott"
       repository: "ha-addons"
-      repository_edge: "ha-addons-edge"
+      repository_edge: ${{ matrix.target }}
     secrets:
       DISPATCH_TOKEN: ${{ secrets.DISPATCH_TOKEN }}
     permissions:
