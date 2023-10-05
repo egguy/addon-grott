@@ -18,7 +18,7 @@ jobs:
   workflows:
     strategy:
       matrix:
-        target: [ha-addons-edge, grott-home-assisstant-add-on]
+        target: [ha-addons-edge, grott-home-assistant-add-on]
     uses: hassio-addons/workflows/.github/workflows/addon-deploy.yaml@main
     with:
       slug: "grott"
