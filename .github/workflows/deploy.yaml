@@ -19,6 +19,7 @@ jobs:
     uses: hassio-addons/workflows/.github/workflows/addon-deploy.yaml@main
     with:
       repository: "ha-addons"
+      repository_beta: "ha-addons-beta"
       repository_edge: "ha-addons-edge"
     secrets:
       DISPATCH_TOKEN: ${{ secrets.DISPATCH_TOKEN }}
