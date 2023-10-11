@@ -25,3 +25,26 @@ jobs:
     permissions:
       contents: write
       packages: write
+
+  publish-stable:
+    name: 📢 Publish to stable repository
+    if: needs.information.outputs.environment == 'stable'
+    needs:
+      - workflows
+    environment:
+      name: ${{ needs.information.outputs.environment }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚀 Dispatch repository updater update signal
+        uses: peter-evans/repository-dispatch@v2.1.2
+        with:
+          token: ${{ secrets.DISPATCH_TOKEN }}
+          repository: ${{ github.repository_owner }}/grott-home-assistant-add-on
+          event-type: update
+          client-payload: >
+            {
+              "addon": "${{ needs.information.outputs.slug }}",
+              "name": "${{ needs.information.outputs.name }}",
+              "repository": "${{ github.repository }}",
+              "version": "${{ github.event.release.tag_name }}"
+            }
