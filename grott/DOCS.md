@@ -94,7 +94,7 @@ If you are using an external MQTT broker, you need to configure the MQTT broker 
 
 ### Compatibility with homeassistant-grott
 
-Muppet3000 has created a custom component for Home Assistant. This component is called [homeassistant-grott](https://github.com/muppet3000/homeassistant-grott). This component is compatible with this add-on.
+Muppet3000 has created a custom component for Home Assistant. This component is called [homeassistant-grott](https://github.com/muppet3000/homeassistant-grott). It is compatible with this add-on.
 
 You can use the add-on and the component at the same time. This will make the deployment of grott and configuration a bit easier.
 
