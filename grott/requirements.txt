@@ -1,4 +1,4 @@
 paho-mqtt==1.6.1
 requests==2.31.0
 influxdb==5.3.1
-grott-ha-plugin==0.9.1
+grott-ha-plugin==0.10.1
