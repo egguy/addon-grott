@@ -1,5 +1,22 @@
 # Grott - Home Assistant native MQTT integration
 
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
+<!-- code_chunk_output -->
+
+- [Grott - Home Assistant native MQTT integration](#grott---home-assistant-native-mqtt-integration)
+  - [Requirements](#requirements)
+  - [Configuration of the Wi-Fi logger](#configuration-of-the-wi-fi-logger)
+  - [Configuration](#configuration)
+    - [Specific inverter configuration](#specific-inverter-configuration)
+    - [Multiple inverters configuration](#multiple-inverters-configuration)
+    - [External MQTT broker](#external-mqtt-broker)
+    - [Compatibility with homeassistant-grott](#compatibility-with-homeassistant-grott)
+  - [Configuration of grott](#configuration-of-grott)
+    - [PVOuput](#pvouput)
+
+<!-- /code_chunk_output -->
+
 ## Requirements
 
 - A MQTT broker (e.g. the Mosquitto broker add-on)
@@ -25,9 +42,9 @@ If you do a change of configuration. It is important to save and then restart th
 
 ### Specific inverter configuration
 
-If you have multiple inverters, please refer on how to configure them on this documentation: [Multiple inverters configuration](#multiple-inverters-configuration)
+If you have multiple inverters, please refer to how to configure them in this documentation: [Multiple inverters configuration](#multiple-inverters-configuration)
 
-In the case you have one of the listed inverter type, you need a special configuration:
+In the case you have one of the listed inverter types, you need a special configuration:
 
 - SPH
   - SPH6000, SPH3000...
@@ -62,7 +79,7 @@ In the case of multiple inverters, you need to configure the inverter details in
 
 You will have to get the serial number of the inverter. To achieve this, you can run grott in verbose mode and check the logs. You will see the serial number of the inverter in the logs.
 
-You can keep the default value for invertype, it will override it.
+You can keep the default value for `invertype`, it will override it.
 
 The format is e.g.:
 
@@ -101,3 +118,13 @@ You can use the add-on and the component at the same time. This will make the de
 You can activate the compatibility mode by checking: **Enable grott MQTT** in the configuration, and then follow the instruction to install and activate the extension.
 
 It is recommended to deactivate the **Home Assistant plugin** in the configuration. This can lead to duplicate sensors.
+
+## Configuration of grott
+
+The add-on creates a folder in home assistant. You can find it in the `/config/grott` folder of your home assistant instance.
+
+You can create/modify the `grott.ini` using the file editor add-on or VS Code add-on. This allows you to add pvoutput support or to add a custom JSON layout.
+
+### PVOuput
+
+[How to configure PVOutput](https://github.com/johanmeijer/grott/wiki/PVOutput.org-support)
