@@ -32,4 +32,4 @@ This add-on is based on the 2.8 Branch of [grott](https://github.com/johanmeijer
 [project-stage-shield]: https://img.shields.io/badge/project%20stage-stable-green.svg
 [releases-shield]: https://img.shields.io/github/release/egguy/addon-grott.svg
 [releases]: https://github.com/egguy/addon-grott/releases
-[docs]: https://github.com/egguy/addon-grott/blob/main/grott-beta/DOCS.md
+[docs]: https://github.com/egguy/addon-grott/blob/main/grott/DOCS.md
