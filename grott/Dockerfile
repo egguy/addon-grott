@@ -7,10 +7,9 @@ ENV LANG C.UTF-8
 # Install python/pip
 ENV PYTHONUNBUFFERED=1
 RUN apk add --update --no-cache \
-        python3=3.11.6-r0 \
-        bind-tools=9.18.19-r0 \
-        && ln -sf python3 /usr/bin/python \
-        && python3 -m ensurepip
+        python3=3.11.6-r1 \
+        bind-tools=9.18.19-r1 \
+        py3-pip=23.3.1-r0
 
 # Copy data for add-on
 COPY script.sh /app/script.sh
