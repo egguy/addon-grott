@@ -15,6 +15,7 @@ services:
 init: false
 map:
   - config:rw
+  - homeassistant_config:rw
 ports:
   5279/tcp: 5279
 ports_description:
