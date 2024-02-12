@@ -9,6 +9,15 @@ bashio::log.info "Preparing to start..."
 # - https://github.com/zigbee2mqtt/hassio-zigbee2mqtt/issues/387
 bashio::config.require 'data_path'
 
+# Migrate add-on data from the Home Assistant config folder,
+# to the add-on configuration folder.
+if ! bashio::fs.directory_exists '/config/grott/' \
+    && bashio::fs.file_exists '/homeassistant/grott/grott.ini'; then
+    bashio::log.info "Mirgrating data from Home Assistant to add-on config folder"
+    mkdir -p /config/grott || bashio::exit.nok "Failed to create Grott configuration folder"
+    cp -rf /homeassistant/grott/* /config/grott/ || bashio::exit.nok "Failed to migrate Grott configuration"
+fi
+
 DATA_PATH=$(bashio::config 'data_path')
 if ! bashio::fs.file_exists "$DATA_PATH/grott.ini"; then
     mkdir -p "$DATA_PATH" || bashio::exit.nok "Could not create $DATA_PATH"
