@@ -121,7 +121,7 @@ It is recommended to deactivate the **Home Assistant plugin** in the configurati
 
 ## Configuration of grott
 
-The add-on creates a folder in home assistant. You can find it in the `/config/grott` folder of your home assistant instance.
+The add-on creates a folder in home assistant. You can find it in the `/addon_configs/grott/` folder of your home assistant instance.
 
 You can create/modify the `grott.ini` using the file editor add-on or VS Code add-on. This allows you to add pvoutput support or to add a custom JSON layout.
 
