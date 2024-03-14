@@ -1,4 +1,4 @@
-ARG BUILD_FROM=ghcr.io/hassio-addons/base:15.0.6
+ARG BUILD_FROM=ghcr.io/hassio-addons/base-python:13.1.2
 # hadolint ignore=DL3006
 FROM $BUILD_FROM
 
@@ -7,10 +7,6 @@ ENV LANG C.UTF-8
 
 # Install python/pip
 ENV PYTHONUNBUFFERED=1
-RUN apk add --update --no-cache \
-        python3=3.11.6-r1 \
-        bind-tools=9.18.19-r1 \
-        py3-pip=23.3.1-r0
 
 # Copy data for add-on
 COPY script.sh /app/script.sh
