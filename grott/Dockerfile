@@ -8,7 +8,7 @@ ENV LANG C.UTF-8
 # Install python/pip
 ENV PYTHONUNBUFFERED=1
 RUN apk add --update --no-cache \
-        python3=3.11.6-r1 \
+        python3=3.11.8-r0 \
         bind-tools=9.18.24-r0 \
         py3-pip=23.3.1-r0
 
