@@ -1,4 +1,4 @@
-# Grott beta 2.7.x
+# Grott beta 2.7.x with grott-ha-plugin plugin
 
 [![GitHub Release][releases-shield]][releases] ![Project Stage][project-stage-shield] [![License][license-shield]](LICENSE.md)
 
@@ -8,13 +8,13 @@
 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/egguy)
 
-This add-on allows you to run a local version of grott with the HA plugin
+This add-on allows you to run a local version of grott with the [HA plugin](https://pypi.org/project/grott-ha-plugin/)
 and auto discovery enabled.
 
-The data is forwarded to the growatt's server.
-The grott server decodes them andsendsd them to your HA instance.
+The data is forwarded to the Growatt's server.
+The grott server decodes them and sends them to your HA instance.
 
-This add-on is based on the 2.8 Branch of [grott](https://github.com/johanmeijer/grott) code and current grott_ha extension.
+This add-on is based on the 2.7 (stable) Branch of [grott](https://github.com/johanmeijer/grott) code and current grott_ha extension.
 
 [:books: Read the full add-on documentation][docs]
 
