@@ -73,16 +73,18 @@ jobs:
       - name: 🚀 Build
         uses: docker/build-push-action@v5.3.0
         with:
-          push: false
-          context: ${{ needs.information.outputs.target }}
-          file: ${{ needs.information.outputs.target }}/Dockerfile
+          load: true
+          tags: |
+            ${{ github.repository_owner }}/${{ steps.information.outputs.slug }}/amd64:${{ steps.release.outputs.version }}
+          context: ${{ steps.information.outputs.target }}
+          file: ${{steps.information.outputs.target }}/Dockerfile
           cache-from: |
             type=local,src=/tmp/.docker-cache
             ghcr.io/${{ github.repository_owner }}/${{ needs.information.outputs.slug }}/${{ matrix.architecture }}:edge
           cache-to: type=local,mode=max,dest=/tmp/.docker-cache
           platforms: ${{ steps.flags.outputs.platform }}
           build-args: |
-            BUILD_ARCH=${{ matrix.architecture }}
+            BUILD_ARCH=amd64
             BUILD_DATE=${{ steps.flags.outputs.date }}
             BUILD_FROM=${{ steps.flags.outputs.from }}
             BUILD_REF=${{ github.sha }}
@@ -101,4 +103,5 @@ jobs:
       # run goss tests
       - name: Run goss tests
         run: |
+          # docket pull ${{ github.repository_owner }}/${{ steps.information.outputs.slug }}/amd64:${{ steps.release.outputs.version }}
           dgoss run "ghcr.io/${{ github.repository_owner }}/${{ steps.information.outputs.slug }}/amd64:edge"
