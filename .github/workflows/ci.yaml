@@ -33,9 +33,9 @@ jobs:
         uses: actions/cache@v4.0.1
         with:
           path: /tmp/.docker-cache
-          key: docker-amd64-${{ github.sha }}
+          key: docker-${{ github.ref }}-amd64-${{ github.sha }}
           restore-keys: |
-            docker-docker-amd64
+            docker-${{ github.ref }}-amd64
       - name: 🏗 Set up QEMU
         uses: docker/setup-qemu-action@v3.0.0
       - name: 🏗 Set up Docker Buildx
@@ -47,7 +47,7 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: ⤵️ Download base image
-        run: docker pull "${{ steps.information.outputs.build }}"
+        run: docker pull "ghcr.io/${{ github.repository_owner }}/${{ steps.information.outputs.slug }}/amd64:edge"
 
       # install goss and dgoss
       - name: Install goss
