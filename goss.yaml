@@ -1,0 +1,7 @@
+---
+package:
+  bind-tools:
+    installed: true
+command:
+  dig 'localhost':
+    exit-status: 0
