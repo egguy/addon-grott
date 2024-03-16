@@ -7,6 +7,8 @@ ENV LANG C.UTF-8
 
 # Install python/pip
 ENV PYTHONUNBUFFERED=1
+RUN apk add --update --no-cache \
+        bind-tools=9.18.24-r1
 
 # Copy data for add-on
 COPY script.sh /app/script.sh
