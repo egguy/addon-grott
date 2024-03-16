@@ -52,12 +52,13 @@ jobs:
       # install goss and dgoss
       - name: Install goss
         run: |
-          curl -fsSL https://goss.rocks/install | sh
-          sudo mv ./goss /usr/local/bin/goss
-          sudo chmod +rx /usr/local/bin/goss
-          curl -fsSL https://dgoss.rocks/install | sh
-          sudo mv ./dgoss /usr/local/bin/dgoss
-          sudo chmod +rx /usr/local/bin/dgossneeds
+          VERSION=v0.4.4
+          curl -L "https://github.com/goss-org/goss/releases/download/${VERSION}/goss-linux-amd64" -o /usr/local/bin/goss
+          chmod +rx /usr/local/bin/goss
+
+          VERSION=v0.4.4
+          curl -L "https://github.com/goss-org/goss/releases/download/${VERSION}/dgoss" -o /usr/local/bin/dgoss
+          chmod +rx /usr/local/bin/dgoss
       # run goss tests
       - name: Run goss tests
         run: |
