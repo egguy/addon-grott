@@ -26,8 +26,25 @@ jobs:
       - name: 🚀 Run add-on information action
         id: information
         uses: frenck/action-addon-information@v1.4.2
-      - name: Checkout repository
-        uses: actions/checkout@v2
+
+      - name: 🚀 Process possible slug override
+        id: override
+        run: |
+          slug="${{ steps.information.outputs.slug }}"
+          if [[ ! -z "${{ inputs.slug }}" ]]; then
+            slug="${{ inputs.slug }}"
+          fi
+          echo "slug=$slug" >> "$GITHUB_OUTPUT"
+
+      - name: ℹ️ Gather version and environment
+        id: release
+        run: |
+          sha="${{ github.sha }}"
+          environment="edge"
+          version="${sha:0:7}"
+          echo "environment=${environment}" >> "$GITHUB_OUTPUT"
+          echo "version=${version}" >> "$GITHUB_OUTPUT"
+
       - name: 🏗 Set up build cache
         id: cache
         uses: actions/cache@v4.0.1
@@ -46,12 +63,31 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: ⤵️ Download base image
-        # pull from cache
+      - name: ℹ️ Compose build flags
+        id: flags
         run: |
-          ls -l /tmp/.docker-cache
-          docker pull "ghcr.io/${{ github.repository_owner }}/${{ steps.information.outputs.slug }}/amd64:edge"
-
+          echo "date=$(date +"%Y-%m-%dT%H:%M:%SZ")" >> "$GITHUB_OUTPUT"
+          from=$(yq --no-colors eval ".build_from.amd64" "${{ steps.information.outputs.build }}")
+          echo "from=${from}" >> "$GITHUB_OUTPUT"
+          echo "${from}"
+      - name: 🚀 Build
+        uses: docker/build-push-action@v5.3.0
+        with:
+          push: false
+          context: ${{ needs.information.outputs.target }}
+          file: ${{ needs.information.outputs.target }}/Dockerfile
+          cache-from: |
+            type=local,src=/tmp/.docker-cache
+            ghcr.io/${{ github.repository_owner }}/${{ needs.information.outputs.slug }}/${{ matrix.architecture }}:edge
+          cache-to: type=local,mode=max,dest=/tmp/.docker-cache
+          platforms: ${{ steps.flags.outputs.platform }}
+          build-args: |
+            BUILD_ARCH=${{ matrix.architecture }}
+            BUILD_DATE=${{ steps.flags.outputs.date }}
+            BUILD_FROM=${{ steps.flags.outputs.from }}
+            BUILD_REF=${{ github.sha }}
+            BUILD_REPOSITORY=${{ github.repository }}
+            BUILD_VERSION=dev
       # install goss and dgoss
       - name: Install goss
         run: |
