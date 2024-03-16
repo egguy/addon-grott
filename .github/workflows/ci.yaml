@@ -47,7 +47,10 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: ⤵️ Download base image
-        run: docker pull "ghcr.io/${{ github.repository_owner }}/${{ steps.information.outputs.slug }}/amd64:edge"
+        # pull from cache
+        run: |
+          ls -l /tmp/.docker-cache
+          docker pull "ghcr.io/${{ github.repository_owner }}/${{ steps.information.outputs.slug }}/amd64:edge"
 
       # install goss and dgoss
       - name: Install goss
