@@ -47,7 +47,7 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: ⤵️ Download base image
-        run: docker pull ${{ steps.information.outputs.build }}"
+        run: docker pull "${{ steps.information.outputs.build }}"
 
       # install goss and dgoss
       - name: Install goss
