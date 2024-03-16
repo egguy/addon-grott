@@ -33,9 +33,9 @@ jobs:
         uses: actions/cache@v4.0.1
         with:
           path: /tmp/.docker-cache
-          key: docker-${{ github.ref }}-amd65-${{ github.sha }}
+          key: docker-amd64-${{ github.sha }}
           restore-keys: |
-            docker-${{ github.ref }}-amd64
+            docker-amd64
       - name: 🏗 Set up QEMU
         uses: docker/setup-qemu-action@v3.0.0
       - name: 🏗 Set up Docker Buildx
