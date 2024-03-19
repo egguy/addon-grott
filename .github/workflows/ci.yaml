@@ -47,7 +47,7 @@ jobs:
 
       - name: 🏗 Set up build cache
         id: cache
-        uses: actions/cache@v4.0.1
+        uses: actions/cache@v4.0.2
         with:
           path: /tmp/.docker-cache
           key: docker-amd64-${{ github.sha }}
