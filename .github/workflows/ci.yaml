@@ -93,11 +93,11 @@ jobs:
       # install goss and dgoss
       - name: Install goss
         run: |
-          VERSION=v0.4.4
+          VERSION=v0.4.7
           curl -L "https://github.com/goss-org/goss/releases/download/${VERSION}/goss-linux-amd64" -o /usr/local/bin/goss
           chmod +rx /usr/local/bin/goss
 
-          VERSION=v0.4.4
+          VERSION=v0.4.7
           curl -L "https://github.com/goss-org/goss/releases/download/${VERSION}/dgoss" -o /usr/local/bin/dgoss
           chmod +rx /usr/local/bin/dgoss
       # run goss tests
