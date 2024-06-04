@@ -1,9 +1,0 @@
----
-package:
-  bind-tools:
-    installed: true
-command:
-  dig 'localhost':
-    exit-status: 0
-    exec: "dig localhost"
-    timeout: 10000
