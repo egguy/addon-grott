@@ -1,3 +1,5 @@
 .doit.db
 *.pyc
 *.pyo
+venv/
+.venv/
