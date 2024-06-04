@@ -97,7 +97,7 @@ jobs:
           uv virtualenv
           uv pip install -r requirements.txt
       # run goss tests
-      - name: Run goss tests
+      - name: Run testinfra
         run: |
-          . .venv
+          . .venv/bin/activate
           pytest --image "${{ github.repository_owner }}/${{ steps.information.outputs.slug }}/amd64:${{ steps.release.outputs.version }}"
