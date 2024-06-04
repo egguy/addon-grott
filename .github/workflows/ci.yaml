@@ -94,8 +94,10 @@ jobs:
       - name: Install  pytest-testinfra
         run: |
           pip install uv
-          uv pip install --user -r requirements.txt
+          uv virtualenv venv
+          uv pip install -r requirements.txt
       # run goss tests
       - name: Run goss tests
         run: |
+          . .venv
           pytest --image "${{ github.repository_owner }}/${{ steps.information.outputs.slug }}/amd64:${{ steps.release.outputs.version }}"
