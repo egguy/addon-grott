@@ -5,3 +5,5 @@ package:
 command:
   dig 'localhost':
     exit-status: 0
+    exec: "dig localhost"
+    timeout: 10000
