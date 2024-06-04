@@ -94,7 +94,7 @@ jobs:
       - name: Install  pytest-testinfra
         run: |
           pip install uv
-          uv pip install --system -r requirements.txt
+          uv pip install --user -r requirements.txt
       # run goss tests
       - name: Run goss tests
         run: |
