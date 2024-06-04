@@ -18,7 +18,7 @@ jobs:
       slug: "grott"
 
   check_image:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     needs: workflows
     steps:
       - name: ⤵️ Check out code from GitHub
