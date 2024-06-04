@@ -1,4 +1,4 @@
-# Grott beta 2.7.x with grott-ha-plugin plugin
+# Grott beta 2.8.x with grott-ha-plugin plugin
 
 [![GitHub Release][releases-shield]][releases] ![Project Stage][project-stage-shield] [![License][license-shield]](LICENSE.md)
 
@@ -14,7 +14,7 @@ and auto discovery enabled.
 The data is forwarded to the Growatt's server.
 The grott server decodes them and sends them to your HA instance.
 
-This add-on is based on the 2.7 (stable) Branch of [grott](https://github.com/johanmeijer/grott) code and current grott_ha extension.
+This add-on is based on the 2.8 (stable) Branch of [grott](https://github.com/johanmeijer/grott) code and current grott_ha extension.
 
 [:books: Read the full add-on documentation][docs]
 
