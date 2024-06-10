@@ -71,7 +71,7 @@ jobs:
           echo "from=${from}" >> "$GITHUB_OUTPUT"
           echo "${from}"
       - name: 🚀 Build
-        uses: docker/build-push-action@v5.3.0
+        uses: docker/build-push-action@v5.4.0
         with:
           load: true
           tags: |
