@@ -1,5 +1,5 @@
 ---
-name: Grott stable branch (2.7)
+name: Grott stable branch (2.8)
 version: dev
 slug: grott
 description: The Growatt inverter monitor with current HA plugin integrated
