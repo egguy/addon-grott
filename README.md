@@ -1,4 +1,4 @@
-# Grott beta 2.8.x with grott-ha-plugin plugin
+# Grott 2.8.x with grott-ha-plugin plugin
 
 [![GitHub Release][releases-shield]][releases] ![Project Stage][project-stage-shield] [![License][license-shield]](LICENSE.md)
 
