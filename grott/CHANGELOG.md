@@ -4,8 +4,8 @@
 
 ### 🚀 Enhancements
 
-- Updated addon title @egguy (#50)
-- (chore) Update the version of grott @egguy (#55)
+- Updated add-on title @egguy (#50)
+- Update the version of grott @egguy, add support for inverter fan (#55)
 
 ## 0.1.9
 
