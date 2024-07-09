@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.10
+
+### 🚀 Enhancements
+
+- Updated addon title @egguy (#50)
+- (chore) Update the version of grott @egguy (#55)
+
 ## 0.1.9
 
 - Use the 2.8 version of grott as it is considered the stable branch
