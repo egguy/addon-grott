@@ -6,7 +6,7 @@
   "commitMessagePrefix": "⬆️",
   "commitMessageTopic": "{{depName}}",
   "forkProcessing": "enabled",
-  "regexManagers": [
+  "customManagers": [
     {
       "fileMatch": ["/Dockerfile$", "/build.yaml$"],
       "matchStringsStrategy": "any",
@@ -25,6 +25,15 @@
       "versioningTemplate": "loose",
       "datasourceTemplate": "repology",
       "depNameTemplate": "alpine_3_20/{{package}}"
+    },
+    {
+      "customType": "regex",
+      "fileMatch": ["/Dockerfile$"],
+      "matchStrings": ["ENV GIT_REF=(?<currentDigest>.*?)\\n"],
+      "currentValueTemplate": "Master",
+      "depNameTemplate": "grott",
+      "packageNameTemplate": "https://github.com/johanmeijer/grott",
+      "datasourceTemplate": "git-refs"
     }
   ],
   "packageRules": [
