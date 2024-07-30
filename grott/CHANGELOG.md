@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.11
+
+- ⬆️ Updated the version of grott used to 20240722 @egguy (#71)
+
 ## 0.1.10
 
 ### 🚀 Enhancements
