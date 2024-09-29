@@ -3,7 +3,7 @@ ARG BUILD_FROM=ghcr.io/hassio-addons/base-python:14.0.3
 FROM $BUILD_FROM
 
 ENV GIT_REF=b5e58170d47576ba0036007b1999e52feb854a3a
-ENV LANG C.UTF-8
+ENV LANG=C.UTF-8
 
 # Install python/pip
 ENV PYTHONUNBUFFERED=1
@@ -15,11 +15,10 @@ COPY script.sh /app/script.sh
 RUN chmod a+x /app/script.sh
 
 WORKDIR /app
-RUN curl -Lk "https://github.com/johanmeijer/grott/archive/$GIT_REF.zip" --output files.zip \
-                && unzip -o files.zip \
-                && rm files.zip \
-                && mv grott-*/*.py ./ \
-                && mv grott-*/T06NNNNXMOD.json "grott-*/examples/Record Layout/T065020.json" ./
+RUN curl -Lk "https://github.com/johanmeijer/grott/archive/$GIT_REF.tar.gz" --output files.tar.gz \
+    && tar --strip-components=1 -xzf files.tar.gz \
+    && rm files.tar.gz \
+    && cp "examples/Record Layout/T065020.json" ./
 
 
 
