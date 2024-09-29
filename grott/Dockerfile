@@ -19,7 +19,7 @@ RUN curl -Lk "https://github.com/johanmeijer/grott/archive/$GIT_REF.zip" --outpu
                 && unzip -o files.zip \
                 && rm files.zip \
                 && mv grott-*/*.py ./ \
-                && mv grott-*/T06NNNNXMOD.json "examples/Record Layout/T065020.json" ./
+                && mv grott-*/T06NNNNXMOD.json "grott-*/examples/Record Layout/T065020.json" ./
 
 
 
