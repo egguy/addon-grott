@@ -15,7 +15,13 @@ COPY script.sh /app/script.sh
 RUN chmod a+x /app/script.sh
 
 WORKDIR /app
-RUN curl -Lk "https://github.com/johanmeijer/grott/archive/$GIT_REF.zip" --output files.zip && unzip -o files.zip && rm files.zip && mv grott-*/*.py ./
+RUN curl -Lk "https://github.com/johanmeijer/grott/archive/$GIT_REF.zip" --output files.zip \
+                && unzip -o files.zip \
+                && rm files.zip \
+                && mv grott-*/*.py ./ \
+                && mv grott-*/T06NNNNXMOD.json "examples/Record Layout/T065020.json" ./
+
+
 
 COPY requirements.txt requirements.txt
 #Install required python packages
