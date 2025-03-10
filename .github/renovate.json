@@ -30,7 +30,7 @@
       "customType": "regex",
       "fileMatch": ["/Dockerfile$"],
       "matchStrings": ["ENV GIT_REF=(?<currentDigest>.*?)\\n"],
-      "currentValueTemplate": "Master",
+      "currentValueTemplate": "master",
       "depNameTemplate": "grott",
       "packageNameTemplate": "https://github.com/johanmeijer/grott",
       "datasourceTemplate": "git-refs"
