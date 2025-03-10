@@ -256,4 +256,5 @@ if bashio::config.true 'grott_mqtt'; then
     export gmqttpassword="$GROTT_CONFIG_MQTT_PASSWORD"
 fi
 
-python -u grott.py -c "$DATA_PATH/grott.ini"
+cd "$DATA_PATH" || bashio::exit.nok "Could not change to $DATA_PATH"
+python -u /app/grott.py -c "$DATA_PATH/grott.ini"
