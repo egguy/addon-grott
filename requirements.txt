@@ -1,2 +1,2 @@
-pytest==8.4.2
+pytest==9.0.2
 pytest-testinfra==10.2.2
